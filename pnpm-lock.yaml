@@ -11,6 +11,9 @@ dependencies:
   '@base-ui/react':
     specifier: ^1.5.0
     version: 1.6.0(@types/react@19.2.14)(react-dom@19.2.4)(react@19.2.4)
+  '@stripe/stripe-js':
+    specifier: ^9.8.0
+    version: 9.8.0
   '@vercel/analytics':
     specifier: 1.6.1
     version: 1.6.1(next@16.2.6)(react@19.2.4)
@@ -880,6 +883,11 @@ packages:
     engines: {node: '>=18'}
     dev: false
 
+  /@stripe/stripe-js@9.8.0:
+    resolution: {integrity: sha512-DHJpol/98VKyojNSYmpkB5vOMnlf87hPe0wPxyaYTNiTMk5QjKMXDfSZLwGctYIXAgAWDFeRABc8lFAj0BELyw==}
+    engines: {node: '>=12.16'}
+    dev: false
+
   /@swc/helpers@0.5.15:
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
     dependencies:
@@ -1014,7 +1022,7 @@ packages:
 
   /@tailwindcss/oxide@4.3.1:
     resolution: {integrity: sha512-yVPyo8RNkabVr3O2EhHEE0Rewu7YKzc1DhIqfL46LKveFrmu9XbDazNOJY7/GRuvw1h6u3utWnR29H/p5JPlgA==}
-    engines: {node: '>= 20'}
+    engines: {node: '>=14.0.0'}
     optionalDependencies:
       '@tailwindcss/oxide-android-arm64': 4.3.1
       '@tailwindcss/oxide-darwin-arm64': 4.3.1
@@ -1029,6 +1037,13 @@ packages:
       '@tailwindcss/oxide-win32-arm64-msvc': 4.3.1
       '@tailwindcss/oxide-win32-x64-msvc': 4.3.1
     dev: true
+    bundledDependencies:
+      - '@napi-rs/wasm-runtime'
+      - '@emnapi/core'
+      - '@emnapi/runtime'
+      - '@tybys/wasm-util'
+      - '@emnapi/wasi-threads'
+      - tslib
 
   /@tailwindcss/postcss@4.3.1:
     resolution: {integrity: sha512-dNJuNbdEJT/SWRuXTYP1WSamelsz3ztkUsdtWQPjrexysrTpaEPM40P/71knXiXLYEojqPOEGitVLLpPMS5T6A==}
@@ -1458,6 +1473,7 @@ packages:
   /detect-libc@2.1.2:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
     engines: {node: '>=8'}
+    requiresBuild: true
 
   /diff@8.0.4:
     resolution: {integrity: sha512-DPi0FmjiSU5EvQV0++GFDOJ9ASQUVFh5kD+OzOnYdi7n3Wpm9hWWGfB/O2blfHcMVTL5WkQXSnRiK9makhrcnw==}
@@ -2196,6 +2212,8 @@ packages:
       lightningcss-win32-arm64-msvc: 1.32.0
       lightningcss-win32-x64-msvc: 1.32.0
     dev: true
+    bundledDependencies:
+      - napi-wasm
 
   /lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
