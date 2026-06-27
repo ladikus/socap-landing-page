@@ -4,6 +4,8 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* SoCap Bonus dark theme */
+
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: var(--font-geist-sans), 'Geist Fallback';
@@ -53,29 +55,29 @@
 }
 
 :root {
-  color-scheme: light;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --brand: #1a56db;
-  --brand-foreground: oklch(1 0 0);
-  --positive: oklch(0.55 0.15 150);
-  --negative: oklch(0.55 0.22 27);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  color-scheme: dark;
+  --background: #0d0d0d;
+  --foreground: #ffffff;
+  --brand: #8fd299;
+  --brand-foreground: #0d0d0d;
+  --positive: #8fd299;
+  --negative: #ff6b6b;
+  --card: #1a1a1a;
+  --card-foreground: #ffffff;
+  --popover: #1a1a1a;
+  --popover-foreground: #ffffff;
+  --primary: #8fd299;
+  --primary-foreground: #0d0d0d;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #ffffff;
+  --muted: #1a1a1a;
+  --muted-foreground: #a0a0a0;
+  --accent: #1a1a1a;
+  --accent-foreground: #ffffff;
+  --destructive: #ff6b6b;
+  --border: #2a2a2a;
+  --input: #2a2a2a;
+  --ring: #8fd299;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);

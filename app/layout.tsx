@@ -10,9 +10,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'SoCap Onboarding Call — Obniż koszty ZUS o 30–50%',
+  title: 'SoCap Bonus — Do 25% niższy koszt zatrudnienia',
   description:
-    'Zarezerwuj 60-minutowy call diagnostyczny i sprawdź, czy system tokenów SoCap pozwoli Twojej firmie legalnie obniżyć koszty składek ZUS. Cena: 1 zł.',
+    'Cyfrowy benefit pracowniczy potwierdzony prawomocnym wyrokiem Sądu Apelacyjnego. Obniż koszt zatrudnienia o 25% bez zmiany umów — pracownik dostaje do 700 zł więcej netto. Umów bezpłatną konsultację.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -34,11 +34,8 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  colorScheme: 'light dark',
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
-  ],
+  colorScheme: 'dark',
+  themeColor: '#0d0d0d',
 }
 
 export default function RootLayout({

@@ -1,24 +1,25 @@
+import { BookButton } from '@/components/book-button'
+
 export function HeroSection() {
   return (
-    <section className="mx-auto max-w-6xl px-6 pt-24 pb-20 sm:pt-32 sm:pb-28">
-      <div className="max-w-3xl">
-        <p className="mb-6 text-sm font-medium uppercase tracking-widest text-muted-foreground">
-          Dla CEO i CFO firm 50–300 pracowników
+    <section className="mx-auto max-w-6xl px-6 pt-20 pb-16 sm:pt-28 sm:pb-24">
+      <div className="mx-auto max-w-3xl text-center">
+        <p className="mb-6 inline-block rounded-full border border-border bg-card px-4 py-1.5 text-xs font-medium text-muted-foreground sm:text-sm">
+          Cyfrowy benefit pracowniczy · Wyrok SA III AUa 1247/24
         </p>
-        <h1 className="text-balance text-5xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-6xl lg:text-7xl">
-          Twoja firma płaci za dużo ZUS.
+        <h1 className="text-balance text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-6xl">
+          Wynagrodzenie na Twoich zasadach.
         </h1>
-        <p className="mt-8 max-w-2xl text-pretty text-xl leading-relaxed text-muted-foreground">
-          System tokenów SoCap pozwala legalnie obniżyć koszty składek o 30–50%.
-          Dowiedz się w 60 minut, czy to działa w Twojej firmie.
+        <p className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-relaxed text-muted-foreground sm:text-lg">
+          Do 25% niższy koszt zatrudnienia bez zmiany umów. Pracownik dostaje do
+          700 zł więcej netto co miesiąc. Model potwierdzony prawomocnym wyrokiem
+          Sądu Apelacyjnego.
         </p>
-        <div className="mt-10">
-          <a
-            href="#rezerwacja"
-            className="inline-flex items-center justify-center rounded-full bg-brand px-8 py-4 text-base font-medium text-brand-foreground transition-opacity hover:opacity-90"
-          >
-            Zarezerwuj call — 1 zł
-          </a>
+        <div className="mt-10 flex flex-col items-center gap-3">
+          <BookButton size="lg">Zarezerwuj konsultację</BookButton>
+          <p className="text-sm text-muted-foreground">
+            60 minut · Bezpłatna analiza Twojej firmy
+          </p>
         </div>
       </div>
     </section>
