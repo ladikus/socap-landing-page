@@ -9,7 +9,7 @@ export async function POST(request: Request) {
       'mode': 'payment',
       'locale': 'pl',
       'line_items[0][price_data][currency]': 'pln',
-      'line_items[0][price_data][unit_amount]': '100',
+      'line_items[0][price_data][unit_amount]': '200',
       'line_items[0][price_data][product_data][name]': 'SoCap Onboarding Call — Konsultacja',
       'line_items[0][quantity]': '1',
       'success_url': `${origin}/success`,
