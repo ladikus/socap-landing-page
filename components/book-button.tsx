@@ -21,7 +21,7 @@ export function BookButton({
   return (
     <button
       type="button"
-      onClick={() => alert('Dziękujemy! Wkrótce dodamy płatność Stripe.')}
+      onClick={() => window.dispatchEvent(new Event('open-booking'))}
       className={cn(
         'inline-flex items-center justify-center rounded-full bg-brand font-semibold text-brand-foreground transition-opacity hover:opacity-90',
         sizes[size],
