@@ -10,8 +10,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
+  title: 'SoCap Onboarding Call — Obniż koszty ZUS o 30–50%',
+  description:
+    'Zarezerwuj 60-minutowy call diagnostyczny i sprawdź, czy system tokenów SoCap pozwoli Twojej firmie legalnie obniżyć koszty składek ZUS. Cena: 1 zł.',
   generator: 'v0.app',
   icons: {
     icon: [
@@ -46,7 +47,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+    <html
+      lang="pl"
+      className={`${geistSans.variable} ${geistMono.variable} bg-background`}
+    >
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
