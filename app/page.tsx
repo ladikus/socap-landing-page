@@ -1,11 +1,13 @@
 import { SiteNav } from '@/components/site-nav'
 import { HeroSection } from '@/components/hero-section'
 import { StatsBar } from '@/components/stats-bar'
+import { SocialProofSection } from '@/components/social-proof-section'
 import { ProblemSection } from '@/components/problem-section'
 import { HowItWorks } from '@/components/how-it-works'
 import { TrustSection } from '@/components/trust-section'
 import { FaqSection } from '@/components/faq-section'
 import { CtaSection } from '@/components/cta-section'
+import { BookingModal } from '@/components/booking-modal'
 
 export default function Home() {
   return (
@@ -14,6 +16,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <StatsBar />
+        <SocialProofSection />
         <ProblemSection />
         <HowItWorks />
         <TrustSection />
@@ -25,6 +28,7 @@ export default function Home() {
           © 2026 SoCap Bonus · Polityka prywatności · Regulamin
         </div>
       </footer>
+      <BookingModal />
     </div>
   )
 }

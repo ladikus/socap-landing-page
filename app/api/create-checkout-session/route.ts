@@ -1,31 +1,47 @@
 import { NextResponse } from 'next/server'
+import Stripe from 'stripe'
 
-// Rezerwacja konsultacji SoCap (opłata testowa: 1 zł / 100 groszy).
-//
-// Stripe nie jest jeszcze podłączony do tego projektu. Gdy dodasz integrację
-// Stripe (oraz zmienne STRIPE_SECRET_KEY i NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY),
-// zastąp poniższy kod tworzeniem sesji Stripe Checkout:
-//
-//   const session = await stripe.checkout.sessions.create({
-//     mode: 'payment',
-//     line_items: [{
-//       price_data: {
-//         currency: 'pln',
-//         unit_amount: 100,
-//         product_data: { name: 'SoCap Onboarding Call — Konsultacja' },
-//       },
-//       quantity: 1,
-//     }],
-//     success_url: `${origin}/success`,
-//     cancel_url: `${origin}/`,
-//   })
-//   return NextResponse.json({ url: session.url })
+let stripe: Stripe | null = null
+function getStripe() {
+  if (!stripe) {
+    stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? '', {
+      apiVersion: '2025-09-30.clover',
+    })
+  }
+  return stripe
+}
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => ({}))
 
-  // Tutaj można zapisać zgłoszenie (CRM / baza / e-mail) zanim ruszy płatność.
-  console.log('[v0] Nowa rezerwacja konsultacji:', body)
+  const origin =
+    request.headers.get('origin') ??
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    'http://localhost:3000'
 
-  return NextResponse.json({ url: '/success' })
+  try {
+    const session = await getStripe().checkout.sessions.create({
+      mode: 'payment',
+      line_items: [
+        {
+          price_data: {
+            currency: 'pln',
+            unit_amount: 100,
+            product_data: { name: 'SoCap Onboarding Call' },
+          },
+          quantity: 1,
+        },
+      ],
+      success_url: `${origin}/success`,
+      cancel_url: `${origin}/`,
+    })
+
+    return NextResponse.json({ url: session.url })
+  } catch (error) {
+    console.error('[stripe] Checkout session error:', error)
+    return NextResponse.json(
+      { error: 'Nie udało się utworzyć sesji płatności.' },
+      { status: 500 },
+    )
+  }
 }
