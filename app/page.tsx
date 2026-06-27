@@ -1,7 +1,7 @@
 import { SiteNav } from '@/components/site-nav'
 import { HeroSection } from '@/components/hero-section'
 import { StatsBar } from '@/components/stats-bar'
-import { SocialProofSection } from '@/components/social-proof-section'
+import { SocialProof } from '@/components/social-proof'
 import { ProblemSection } from '@/components/problem-section'
 import { HowItWorks } from '@/components/how-it-works'
 import { TrustSection } from '@/components/trust-section'
@@ -16,7 +16,7 @@ export default function Home() {
       <main>
         <HeroSection />
         <StatsBar />
-        <SocialProofSection />
+        <SocialProof />
         <ProblemSection />
         <HowItWorks />
         <TrustSection />
