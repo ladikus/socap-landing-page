@@ -113,7 +113,7 @@ export function MediaCarousel() {
         >
           {visible.map((article, i) => (
             
-              key={`${article.source}-${i}`}
+              key={article.source + String(i)}
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
