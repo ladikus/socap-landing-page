@@ -5,8 +5,7 @@ import { MediaCarousel } from '@/components/media-carousel'
 import { Calculator } from '@/components/calculator'
 import { SocialProof } from '@/components/social-proof'
 import { ProblemSection } from '@/components/problem-section'
-import { HowItWorks } from '@/components/how-it-works'
-import { TrustSection } from '@/components/trust-section'
+import { HowItWorksLegal } from '@/components/how-it-works-legal'
 import { FaqSection } from '@/components/faq-section'
 import { CtaSection } from '@/components/cta-section'
 import { BookingModal } from '@/components/booking-modal'
@@ -22,8 +21,7 @@ export default function Home() {
         <MediaCarousel />
         <Calculator />
         <SocialProof />
-        <HowItWorks />
-        <TrustSection />
+        <HowItWorksLegal />
         <FaqSection />
         <CtaSection />
       </main>
