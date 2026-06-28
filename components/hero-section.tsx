@@ -81,7 +81,7 @@ export function HeroSection() {
                 Sprawdź ile zaoszczędzisz →
               </BookButton>
              <p className="text-sm text-gray-500">
-  60 min · konkretna analiza Twojego biznesu · rozmowa z konsultantem · bez zobowiązań
+  60 min · konkretna analiza Twojego biznesu · rozmowa z konsultantem
 </p>
             </div>
           </div>
