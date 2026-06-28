@@ -9,14 +9,12 @@ function formatPLN(value: number): string {
   }) + ' zł'
 }
 
-const SOCAP_COEFFICIENT = 0.11743
-const PROWIZJA_PER_EMPLOYEE = 50
-
 function calculate(employees: number, netSalary: number) {
-  const totalBenefit = netSalary * SOCAP_COEFFICIENT
-  const employerSavingPerEmployee = totalBenefit
-  const grossSalary = netSalary / 0.7048
-  const totalCostPerEmployee = grossSalary * 1.2048 - employerSavingPerEmployee + PROWIZJA_PER_EMPLOYEE
+  const podstawaZUS = netSalary * 0.9612
+  const zusEmployer = podstawaZUS * 0.2048
+  const prowizja = zusEmployer * 0.4890
+  const employerSavingPerEmployee = zusEmployer - prowizja
+  const totalCostPerEmployee = netSalary * 1.543076 + prowizja
   const companySavingPerMonth = employerSavingPerEmployee * employees
   const companySavingPerYear = companySavingPerMonth * 12
 
