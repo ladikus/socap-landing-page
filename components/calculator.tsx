@@ -9,18 +9,30 @@ function formatPLN(value: number): string {
   }) + ' zł'
 }
 
-const SOCAP_COEFFICIENT = 0.11743
-const PROWIZJA_PER_EMPLOYEE = 50
+// Formula reverse-engineered from SoCap's own calculator:
+// Net 5000 → Gross ~7115 → ZUS employer (13.83%) = 984.28
+// Prowizja SoCap = ZUS × 0.4890 = 481.28
+// Oszczędność pracodawcy = ZUS × 0.5965 = 587.15
+// Koszt pracodawcy z prowizją = Gross + Prowizja = 8196.66
+
+const GROSS_FROM_NET = 1.423      // net × 1.423 ≈ gross (UoP)
+const ZUS_EMPLOYER_RATE = 0.1383  // 13.83% of gross
+const PROWIZJA_RATE = 0.4890      // prowizja = ZUS × 48.9%
+const SAVING_RATE = 0.5965        // savings = ZUS × 59.65%
 
 function calculate(employees: number, netSalary: number) {
-  const totalBenefit = netSalary * SOCAP_COEFFICIENT
-  const employerSavingPerEmployee = totalBenefit
-  const grossSalary = netSalary / 0.7048
-  const totalCostPerEmployee = grossSalary * 1.2048 - employerSavingPerEmployee + PROWIZJA_PER_EMPLOYEE
+  const gross = netSalary * GROSS_FROM_NET
+  const zusEmployer = gross * ZUS_EMPLOYER_RATE
+  const prowizja = zusEmployer * PROWIZJA_RATE
+  const employerSavingPerEmployee = zusEmployer * SAVING_RATE
+  const totalCostPerEmployee = gross + prowizja
   const companySavingPerMonth = employerSavingPerEmployee * employees
   const companySavingPerYear = companySavingPerMonth * 12
 
   return {
+    zusEmployer,
+    prowizja,
+    gross,
     employerSavingPerEmployee,
     totalCostPerEmployee,
     companySavingPerMonth,
@@ -69,9 +81,9 @@ export function Calculator() {
         </div>
 
         <div className="rounded-3xl border border-gray-100 bg-gray-50 p-8 shadow-sm">
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
 
-            {/* Liczba pracowników */}
+          {/* Inputs */}
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-700">
                 Liczba pracowników
@@ -100,7 +112,6 @@ export function Calculator() {
               </div>
             </div>
 
-            {/* Wynagrodzenie netto */}
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-700">
                 Średnie wynagrodzenie netto (PLN)
@@ -114,13 +125,38 @@ export function Calculator() {
             </div>
           </div>
 
-          {/* Results */}
-          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-sm">
+          {/* Breakdown */}
+          <div className="mt-8 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-gray-400">
+              Szczegóły kalkulacji / pracownik
+            </p>
+            <div className="space-y-2 text-sm">
+              <div className="flex justify-between text-gray-600">
+                <span>Koszt pracodawcy (brutto)</span>
+                <span className="font-medium text-gray-900">{formatPLN(results.gross)}</span>
+              </div>
+              <div className="flex justify-between text-gray-600">
+                <span>ZUS pracodawcy</span>
+                <span className="font-medium text-gray-900">{formatPLN(results.zusEmployer)}</span>
+              </div>
+              <div className="flex justify-between text-amber-600">
+                <span>Prowizja SoCap</span>
+                <span className="font-medium">{formatPLN(results.prowizja)}</span>
+              </div>
+              <div className="flex justify-between border-t border-gray-100 pt-2 font-semibold">
+                <span className="text-gray-700">Koszt pracodawcy z prowizją</span>
+                <span className="text-gray-900">{formatPLN(results.totalCostPerEmployee)}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Main results */}
+          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl border border-[#8fd299]/30 bg-white p-5 text-center shadow-sm">
               <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
                 Oszczędność pracodawcy
               </p>
-              <p className="text-2xl font-bold text-[#2f9e44]">
+              <p className="text-3xl font-bold text-[#2f9e44]">
                 {formatPLN(results.employerSavingPerEmployee)}
               </p>
               <p className="mt-1 text-xs text-gray-400">/ pracownik / mies.</p>
@@ -130,13 +166,14 @@ export function Calculator() {
               <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
                 Całkowity koszt z prowizją
               </p>
-              <p className="text-2xl font-bold text-gray-900">
+              <p className="text-3xl font-bold text-gray-900">
                 {formatPLN(results.totalCostPerEmployee)}
               </p>
               <p className="mt-1 text-xs text-gray-400">/ pracownik / mies.</p>
             </div>
           </div>
 
+          {/* Company totals */}
           <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="rounded-2xl bg-[#8fd299]/15 p-6 text-center">
               <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[#2f9e44]">
@@ -162,9 +199,10 @@ export function Calculator() {
             </div>
           </div>
 
+          {/* Footer */}
           <div className="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
             <p className="text-xs text-gray-400">
-              * Kalkulacja poglądowa. Dokładną kwotę dla Twojej firmy wyliczymy na konsultacji.
+              * Kalkulacja poglądowa na podstawie UoP. Dokładną kwotę wyliczymy na konsultacji.
             </p>
             <div className="flex gap-3">
               <button
