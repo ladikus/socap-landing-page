@@ -10,10 +10,9 @@ function formatPLN(value: number): string {
 }
 
 function calculate(employees: number, netSalary: number) {
-  const podstawaZUS = netSalary * 0.9612
-  const zusEmployer = podstawaZUS * 0.2048
-  const prowizja = zusEmployer * 0.4890
-  const employerSavingPerEmployee = zusEmployer - prowizja
+  const zusEmployer = netSalary * 0.196856
+  const prowizja = zusEmployer * 0.48896
+  const employerSavingPerEmployee = zusEmployer * 0.59651
   const totalCostPerEmployee = netSalary * 1.543076 + prowizja
   const companySavingPerMonth = employerSavingPerEmployee * employees
   const companySavingPerYear = companySavingPerMonth * 12
