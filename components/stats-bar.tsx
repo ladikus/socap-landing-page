@@ -1,7 +1,7 @@
 const stats = [
-  { value: '25%', label: 'niższy koszt zatrudnienia' },
-  { value: '700 zł', label: 'więcej netto dla pracownika / mies.' },
-  { value: '100%', label: 'zgodności z przepisami' },
+  { value: '25%', label: 'niższy koszt zatrudnienia — potwierdzony wyrokiem SA III AUa 1247/24' },
+  { value: '700 zł', label: 'więcej netto miesięcznie dla każdego pracownika' },
+  { value: '0', label: 'naruszeń stwierdzonych podczas kontroli PIP' },
 ]
 
 export function StatsBar() {
