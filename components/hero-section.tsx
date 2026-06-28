@@ -26,7 +26,7 @@ export function HeroSection() {
             </div>
 
             <h1 className="text-4xl font-bold leading-[1.08] tracking-tight text-gray-900 sm:text-5xl xl:text-6xl">
-              Zatrudniasz 50+ osób?<br />
+              Zatrudniasz 10+ osób?<br />
               <span className="text-[#2f9e44]">Przepłacasz ZUS</span><br />
               co miesiąc.
             </h1>
@@ -80,9 +80,9 @@ export function HeroSection() {
               <BookButton size="lg">
                 Sprawdź ile zaoszczędzisz →
               </BookButton>
-              <p className="text-sm text-gray-500">
-                60 min · bezpłatna analiza · bez zobowiązań
-              </p>
+             <p className="text-sm text-gray-500">
+  60 min · konkretna analiza Twojego biznesu · rozmowa z konsultantem · bez zobowiązań
+</p>
             </div>
           </div>
 
