@@ -2,6 +2,7 @@ import { SiteNav } from '@/components/site-nav'
 import { HeroSection } from '@/components/hero-section'
 import { StatsBar } from '@/components/stats-bar'
 import { SocialProof } from '@/components/social-proof'
+import { MediaCarousel } from '@/components/media-carousel'
 import { ProblemSection } from '@/components/problem-section'
 import { HowItWorks } from '@/components/how-it-works'
 import { TrustSection } from '@/components/trust-section'
@@ -17,6 +18,7 @@ export default function Home() {
         <HeroSection />
         <StatsBar />
         <SocialProof />
+        <MediaCarousel />
         <ProblemSection />
         <HowItWorks />
         <TrustSection />
