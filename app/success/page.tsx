@@ -43,7 +43,7 @@ export default function SuccessPage() {
 
         <p className="mx-auto mt-5 max-w-lg text-pretty text-lg leading-relaxed text-muted-foreground">
           Twoja rezerwacja jest potwierdzona. Nasz ekspert odezwie się do Ciebie
-          w ciągu <strong className="text-foreground">24 godzin roboczych</strong> —
+          w ciągu <strong className="text-foreground">24 godzin</strong> —
           żeby ustalić dokładny termin i przesłać krótkie pytania przed rozmową.
         </p>
 
