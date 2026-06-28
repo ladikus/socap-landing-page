@@ -6,113 +6,122 @@ export const metadata: Metadata = {
   description: 'Dziękujemy za rezerwację konsultacji SoCap.',
 }
 
-const steps = [
-  {
-    icon: (
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <rect x="2" y="4" width="20" height="16" rx="2" />
-        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-      </svg>
-    ),
-    text: 'Sprawdź e-mail — wysłaliśmy potwierdzenie',
-  },
-  {
-    icon: (
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M8 2v4M16 2v4" />
-        <rect x="3" y="4" width="18" height="18" rx="2" />
-        <path d="M3 10h18" />
-      </svg>
-    ),
-    text: 'Przygotuj dane o strukturze zatrudnienia',
-  },
-  {
-    icon: (
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
-      </svg>
-    ),
-    text: 'Czekaj na telefon od eksperta SoCap',
-  },
-]
-
 export default function SuccessPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-background px-6 py-20 text-center">
-      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-brand">
-        <svg
-          width="36"
-          height="36"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="3"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="text-brand-foreground"
-          aria-hidden="true"
-        >
-          <path d="M20 6 9 17l-5-5" />
-        </svg>
+    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background px-6 py-20">
+
+      {/* Dekoracyjne tło */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        <div className="h-[600px] w-[600px] rounded-full bg-brand/5 blur-3xl" />
       </div>
 
-      <h1 className="mt-8 text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
-        Rezerwacja potwierdzona!
-      </h1>
-      <p className="mx-auto mt-4 max-w-md text-pretty text-base leading-relaxed text-muted-foreground">
-        Dziękujemy. Nasz ekspert skontaktuje się z Tobą w ciągu 24 godzin
-        roboczych.
-      </p>
+      <div className="relative z-10 flex flex-col items-center text-center">
 
-      <ul className="mt-12 w-full max-w-md space-y-4 text-left">
-        {steps.map((step) => (
-          <li
-            key={step.text}
-            className="flex items-center gap-4 rounded-2xl border border-border bg-card p-4"
+        {/* Ikona sukcesu */}
+        <div className="relative flex h-24 w-24 items-center justify-center">
+          <div className="absolute inset-0 animate-ping rounded-full bg-brand/20" />
+          <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-brand shadow-lg shadow-brand/30">
+            <svg
+              width="40"
+              height="40"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="text-brand-foreground"
+            >
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+          </div>
+        </div>
+
+        {/* Nagłówek */}
+        <h1 className="mt-10 text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
+          Gotowe. Do zobaczenia
+          <br />
+          <span className="text-brand">na konsultacji.</span>
+        </h1>
+
+        <p className="mx-auto mt-5 max-w-lg text-pretty text-lg leading-relaxed text-muted-foreground">
+          Twoja rezerwacja jest potwierdzona. Nasz ekspert odezwie się do Ciebie
+          w ciągu <strong className="text-foreground">24 godzin roboczych</strong> —
+          żeby ustalić dokładny termin i przesłać krótkie pytania przed rozmową.
+        </p>
+
+        {/* Co dalej */}
+        <div className="mt-12 w-full max-w-lg rounded-3xl border border-border bg-card p-8 text-left">
+          <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
+            Co będzie dalej
+          </p>
+
+          <div className="mt-6 space-y-6">
+
+            <div className="flex gap-4">
+              <span className="mt-0.5 text-2xl">🌐</span>
+              <div>
+                <p className="font-semibold text-foreground">Dowiedz się więcej</p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Zajrzyj na naszą stronę — znajdziesz tam więcej informacji
+                  o systemie SoCap i odpowiedzi na najczęstsze pytania.
+                </p>
+                
+                  href="https://socapbonus.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-block text-sm font-medium text-brand underline-offset-4 hover:underline"
+                >
+                  socapbonus.com →
+                </a>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <span className="mt-0.5 text-2xl">📞</span>
+              <div>
+                <p className="font-semibold text-foreground">Czekaj na kontakt</p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Ekspert SoCap zadzwoni lub napisze żeby potwierdzić termin
+                  i dowiedzieć się więcej o Twojej firmie przed rozmową.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <span className="mt-0.5 text-2xl">💡</span>
+              <div>
+                <p className="font-semibold text-foreground">Przygotuj jedną liczbę</p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  Ile osób zatrudniasz na umowę o pracę? To wystarczy żeby
+                  na konsultacji pokazać Ci konkretną kwotę oszczędności.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Kontakt */}
+        <div className="mt-8 flex flex-col items-center gap-2 text-sm text-muted-foreground">
+          <p>Masz pytanie przed rozmową?</p>
+          
+            href="mailto:administracja@socapbonus.com"
+            className="font-medium text-brand underline-offset-4 hover:underline"
           >
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand/15 text-foreground">
-              {step.icon}
-            </span>
-            <span className="text-sm text-foreground sm:text-base">
-              {step.text}
-            </span>
-          </li>
-        ))}
-      </ul>
+            administracja@socapbonus.com
+          </a>
+        </div>
 
-      <Link
-        href="/"
-        className="mt-12 inline-flex items-center justify-center rounded-full bg-brand px-8 py-3.5 text-sm font-semibold text-brand-foreground transition-opacity hover:opacity-90"
-      >
-        Wróć na stronę główną
-      </Link>
+        {/* Powrót */}
+        <Link
+          href="/"
+          className="mt-10 inline-flex items-center gap-2 text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+        >
+          ← Wróć na stronę główną
+        </Link>
+
+      </div>
     </main>
   )
 }
