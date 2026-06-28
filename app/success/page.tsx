@@ -10,14 +10,12 @@ export default function SuccessPage() {
   return (
     <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-background px-6 py-20">
 
-      {/* Dekoracyjne tło */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
         <div className="h-[600px] w-[600px] rounded-full bg-brand/5 blur-3xl" />
       </div>
 
       <div className="relative z-10 flex flex-col items-center text-center">
 
-        {/* Ikona sukcesu */}
         <div className="relative flex h-24 w-24 items-center justify-center">
           <div className="absolute inset-0 animate-ping rounded-full bg-brand/20" />
           <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-brand shadow-lg shadow-brand/30">
@@ -37,7 +35,6 @@ export default function SuccessPage() {
           </div>
         </div>
 
-        {/* Nagłówek */}
         <h1 className="mt-10 text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
           Gotowe. Do zobaczenia
           <br />
@@ -50,7 +47,6 @@ export default function SuccessPage() {
           żeby ustalić dokładny termin i przesłać krótkie pytania przed rozmową.
         </p>
 
-        {/* Co dalej */}
         <div className="mt-12 w-full max-w-lg rounded-3xl border border-border bg-card p-8 text-left">
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
             Co będzie dalej
@@ -63,16 +59,10 @@ export default function SuccessPage() {
               <div>
                 <p className="font-semibold text-foreground">Dowiedz się więcej</p>
                 <p className="mt-1 text-sm text-muted-foreground">
-                  Zajrzyj na naszą stronę — znajdziesz tam więcej informacji
-                  o systemie SoCap i odpowiedzi na najczęstsze pytania.
+                  Zajrzyj na naszą stronę — znajdziesz tam więcej informacji o systemie SoCap.
                 </p>
-                
-                  href="https://socapbonus.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-2 inline-block text-sm font-medium text-brand underline-offset-4 hover:underline"
-                >
-                  socapbonus.com &#8594;
+                <a href="https://socapbonus.com" target="_blank" rel="noopener noreferrer" className="mt-2 inline-block text-sm font-medium text-brand">
+                  socapbonus.com
                 </a>
               </div>
             </div>
@@ -102,23 +92,18 @@ export default function SuccessPage() {
           </div>
         </div>
 
-        {/* Kontakt */}
         <div className="mt-8 flex flex-col items-center gap-2 text-sm text-muted-foreground">
           <p>Masz pytanie przed rozmową?</p>
-          
-            href="mailto:administracja@socapbonus.com"
-            className="font-medium text-brand underline-offset-4 hover:underline"
-          >
+          <a href="mailto:administracja@socapbonus.com" className="font-medium text-brand">
             administracja@socapbonus.com
           </a>
         </div>
 
-        {/* Powrót */}
         <Link
           href="/"
-          className="mt-10 inline-flex items-center gap-2 text-sm text-muted-foreground underline-offset-4 hover:text-foreground hover:underline"
+          className="mt-10 inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground"
         >
-          ← Wróć na stronę główną
+          Wróć na stronę główną
         </Link>
 
       </div>
