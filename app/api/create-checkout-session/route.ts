@@ -5,6 +5,21 @@ export async function POST(request: Request) {
     const body = await request.json().catch(() => ({}))
     const origin = request.headers.get('origin') || 'https://socap-landing-page.vercel.app'
 
+    // Zapisz do Google Sheets
+    if (process.env.APPS_SCRIPT_URL) {
+      fetch(process.env.APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          company: body.company || '',
+          email: body.email || '',
+          phone: body.phone || '',
+          employees: body.employees || '',
+          status: 'przed_platnoscia',
+        }),
+      }).catch(() => {})
+    }
+
     const params = new URLSearchParams({
       'mode': 'payment',
       'locale': 'pl',
