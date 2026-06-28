@@ -72,7 +72,7 @@ export default function SuccessPage() {
                   rel="noopener noreferrer"
                   className="mt-2 inline-block text-sm font-medium text-brand underline-offset-4 hover:underline"
                 >
-                  socapbonus.com →
+                  socapbonus.com &#8594;
                 </a>
               </div>
             </div>
