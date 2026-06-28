@@ -77,7 +77,6 @@ export function MediaCarousel() {
   return (
     <section className="bg-gray-50 py-16">
       <div className="mx-auto max-w-6xl px-6">
-        {/* Header */}
         <div className="mb-10 flex items-center justify-between">
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-[#2f9e44]">
@@ -105,14 +104,13 @@ export function MediaCarousel() {
           </div>
         </div>
 
-        {/* Cards */}
         <div
           className="grid grid-cols-1 gap-5 sm:grid-cols-3"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
           {visible.map((article, i) => (
-            
+            <a
               key={article.source + String(i)}
               href={article.url}
               target="_blank"
@@ -139,18 +137,16 @@ export function MediaCarousel() {
           ))}
         </div>
 
-        {/* Dots */}
         <div className="mt-6 flex justify-center gap-1.5">
           {articles.map((_, i) => (
             <button
-              key={i}
+              key={String(i)}
               onClick={() => setCurrent(i)}
-              className={`h-1.5 rounded-full transition-all ${
-                i === current % articles.length
-                  ? 'w-6 bg-[#2f9e44]'
-                  : 'w-1.5 bg-gray-300'
-              }`}
-              aria-label={`Przejdź do ${i + 1}`}
+              className={[
+                'h-1.5 rounded-full transition-all',
+                i === current % articles.length ? 'w-6 bg-[#2f9e44]' : 'w-1.5 bg-gray-300'
+              ].join(' ')}
+              aria-label={'Przejdź do ' + String(i + 1)}
             />
           ))}
         </div>
