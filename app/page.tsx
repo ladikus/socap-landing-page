@@ -1,9 +1,9 @@
 import { SiteNav } from '@/components/site-nav'
 import { HeroSection } from '@/components/hero-section'
 import { StatsBar } from '@/components/stats-bar'
-import { SocialProof } from '@/components/social-proof'
 import { MediaCarousel } from '@/components/media-carousel'
 import { Calculator } from '@/components/calculator'
+import { SocialProof } from '@/components/social-proof'
 import { ProblemSection } from '@/components/problem-section'
 import { HowItWorks } from '@/components/how-it-works'
 import { TrustSection } from '@/components/trust-section'
@@ -18,17 +18,17 @@ export default function Home() {
       <main>
         <HeroSection />
         <StatsBar />
-        <SocialProof />
         <MediaCarousel />
         <Calculator />
+        <SocialProof />
         <ProblemSection />
         <HowItWorks />
         <TrustSection />
         <FaqSection />
         <CtaSection />
       </main>
-      <footer className="border-t border-border">
-        <div className="mx-auto max-w-6xl px-6 py-10 text-center text-sm text-muted-foreground">
+      <footer className="border-t border-gray-100">
+        <div className="mx-auto max-w-6xl px-6 py-10 text-center text-sm text-gray-400">
           © 2026 SoCap Bonus · Polityka prywatności · Regulamin
         </div>
       </footer>
