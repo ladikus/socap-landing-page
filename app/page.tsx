@@ -17,11 +17,11 @@ export default function Home() {
       <SiteNav />
       <main>
         <HeroSection />
+        <ProblemSection />
         <StatsBar />
         <MediaCarousel />
         <Calculator />
         <SocialProof />
-        <ProblemSection />
         <HowItWorks />
         <TrustSection />
         <FaqSection />
