@@ -9,28 +9,22 @@ function formatPLN(value: number): string {
   }) + ' zł'
 }
 
-// Verified against SoCap calculator for 5000 zł netto / UoP:
-// Podstawa ZUS = netto × 0.9612
-// ZUS pracodawcy = podstawaZUS × 0.2048
-// Prowizja SoCap = ZUS pracodawcy × 0.4890
-// Oszczędność = ZUS pracodawcy - Prowizja
-// Koszt pracodawcy = netto × 1.5431 (7715.38 / 5000)
-// Koszt z prowizją = koszt + prowizja
+const SOCAP_COEFFICIENT = 0.11743
+const PROWIZJA_PER_EMPLOYEE = 50
 
 function calculate(employees: number, netSalary: number) {
-  const podstawaZUS = netSalary * 0.9612
-  const zusEmployer = podstawaZUS * 0.2048
-  const prowizja = zusEmployer * 0.4890
-  const oszczednoscNaPracownika = zusEmployer - prowizja
-  const kosztPracodawcy = netSalary * 1.5431
-  const kosztZProwizja = kosztPracodawcy + prowizja
+  const totalBenefit = netSalary * SOCAP_COEFFICIENT
+  const employerSavingPerEmployee = totalBenefit
+  const grossSalary = netSalary / 0.7048
+  const totalCostPerEmployee = grossSalary * 1.2048 - employerSavingPerEmployee + PROWIZJA_PER_EMPLOYEE
+  const companySavingPerMonth = employerSavingPerEmployee * employees
+  const companySavingPerYear = companySavingPerMonth * 12
 
   return {
-    oszczednoscNaPracownika,
-    prowizja,
-    kosztZProwizja,
-    oszczednoscMies: oszczednoscNaPracownika * employees,
-    oszczednoscRok: oszczednoscNaPracownika * employees * 12,
+    employerSavingPerEmployee,
+    totalCostPerEmployee,
+    companySavingPerMonth,
+    companySavingPerYear,
   }
 }
 
@@ -40,7 +34,7 @@ export function Calculator() {
   const [employees, setEmployees] = useState(100)
   const [netSalary, setNetSalary] = useState(5000)
 
-  const r = calculate(employees, netSalary)
+  const results = calculate(employees, netSalary)
 
   const handleEmployees = useCallback((val: string) => {
     const n = parseInt(val.replace(/\D/g, ''), 10)
@@ -51,6 +45,11 @@ export function Calculator() {
     const n = parseInt(val.replace(/\D/g, ''), 10)
     if (!isNaN(n) && n >= 0) setNetSalary(n)
   }, [])
+
+  const handleReset = () => {
+    setEmployees(100)
+    setNetSalary(5000)
+  }
 
   return (
     <section className="bg-white py-20">
@@ -70,9 +69,9 @@ export function Calculator() {
         </div>
 
         <div className="rounded-3xl border border-gray-100 bg-gray-50 p-8 shadow-sm">
-
-          {/* Inputs */}
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+
+            {/* Liczba pracowników */}
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-700">
                 Liczba pracowników
@@ -101,6 +100,7 @@ export function Calculator() {
               </div>
             </div>
 
+            {/* Wynagrodzenie netto */}
             <div>
               <label className="mb-2 block text-sm font-semibold text-gray-700">
                 Średnie wynagrodzenie netto (PLN)
@@ -114,16 +114,70 @@ export function Calculator() {
             </div>
           </div>
 
-          {/* Results — только главные числа */}
-          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
-            <div className="rounded-2xl border border-[#8fd299]/30 bg-white p-5 text-center shadow-sm">
+          {/* Results */}
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-sm">
               <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
                 Oszczędność pracodawcy
               </p>
               <p className="text-2xl font-bold text-[#2f9e44]">
-                {formatPLN(r.oszczednoscNaPracownika)}
+                {formatPLN(results.employerSavingPerEmployee)}
               </p>
               <p className="mt-1 text-xs text-gray-400">/ pracownik / mies.</p>
             </div>
 
-            <div
+            <div className="rounded-2xl border border-gray-100 bg-white p-5 text-center shadow-sm">
+              <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
+                Całkowity koszt z prowizją
+              </p>
+              <p className="text-2xl font-bold text-gray-900">
+                {formatPLN(results.totalCostPerEmployee)}
+              </p>
+              <p className="mt-1 text-xs text-gray-400">/ pracownik / mies.</p>
+            </div>
+          </div>
+
+          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="rounded-2xl bg-[#8fd299]/15 p-6 text-center">
+              <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[#2f9e44]">
+                Oszczędność firmy / miesiąc
+              </p>
+              <p className="text-3xl font-bold text-gray-900">
+                {formatPLN(results.companySavingPerMonth)}
+              </p>
+              <p className="mt-1 text-xs text-gray-500">
+                {employees} prac. × {formatPLN(results.employerSavingPerEmployee)}
+              </p>
+            </div>
+            <div className="rounded-2xl bg-[#8fd299]/15 p-6 text-center">
+              <p className="mb-1 text-xs font-semibold uppercase tracking-wider text-[#2f9e44]">
+                Oszczędność firmy / rok
+              </p>
+              <p className="text-3xl font-bold text-gray-900">
+                {formatPLN(results.companySavingPerYear)}
+              </p>
+              <p className="mt-1 text-xs text-gray-500">
+                {employees} prac. × 12 mies.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-6 flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+            <p className="text-xs text-gray-400">
+              * Kalkulacja poglądowa. Dokładną kwotę dla Twojej firmy wyliczymy na konsultacji.
+            </p>
+            <div className="flex gap-3">
+              <button
+                onClick={handleReset}
+                className="rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-gray-600 transition hover:border-gray-300"
+              >
+                ↺ Resetuj
+              </button>
+              <BookButton>Umów konsultację →</BookButton>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
